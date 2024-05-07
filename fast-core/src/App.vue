@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 </script>
-
 <template>
   <RouterLink to="/search">搜索组件</RouterLink>
   <br/>
