@@ -75,7 +75,7 @@ const height = ref(500)
 </script>
 
 <template>
-  <h1>简易搜索表格</h1>
+  <h1>全表格</h1>
 
   <div id="it">
     <span>改变高度</span>

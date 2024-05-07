@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FastTableSlim from '@/core/fast-table-slim'
+import FastTable from '@/core/base/table/index'
 import { ref } from 'vue'
 interface User {
   id: string
@@ -72,34 +72,26 @@ const column = [
 
 const height = ref(500)
 
+
 </script>
 
 <template>
-  <h1>简易搜索表格</h1>
+  <h1>纯表格</h1>
+ <fast-table table-key="test-table" :data="testdata" :config="{ border: true, height: 120 }" :column="column">
+    <el-table-column prop="sex">
+      <template #default="scope">
+        <el-tag>{{ scope.row.sex === 1 ? '男' : '女' }}</el-tag>
+      </template>
+    </el-table-column>
+    <el-table-column prop="like">
+      <template #default="scope">
+        <el-tag v-for="item in scope.row.like" style="margin-right: 8px;">{{ item }}</el-tag>
+      </template>
+    </el-table-column>
+  </fast-table> 
 
-  <div id="it">
-    <span>改变高度</span>
-    <input v-model="height" style="width: 100px" />
-  </div>
-  <div :style="{ height: height + 'px', display: 'flex' }" >
-    <div class="page-box">
-      <div>
-        <fast-table-slim :data="testdata" :column="column">
-          <el-table-column prop="sex">
-            <template #default="scope">
-              <el-tag>{{ scope.row.sex === 1 ? '男' : '女' }}</el-tag>
-            </template>
-          </el-table-column>
-          <el-table-column prop="like">
-            <template #default="scope">
-              <el-tag v-for=" item  in  scope.row.like " style="margin-right: 8px;">{{ item }}</el-tag>
-            </template>
-          </el-table-column>
-        </fast-table-slim>
 
-      </div>
-    </div>
-  </div>
+
 
 
 </template>
@@ -120,4 +112,4 @@ const height = ref(500)
   bottom: 0;
   display: flex;
 }
-</style>@/core/base/table/index
+</style>
