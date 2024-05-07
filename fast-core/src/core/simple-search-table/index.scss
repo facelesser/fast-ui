@@ -1,0 +1,10 @@
+@import '../common/var';
+
+.#{$THEME_PREFIX}-fast-search {
+    height: 100%;
+    position: relative;
+    &-toolbar {
+        display: flex;
+        padding: 0 0 8px 0;
+    }
+}

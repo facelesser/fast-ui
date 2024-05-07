@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import FastTable from '@/core/table/index'
 import Page from '@/core/page/index.vue'
-import FastSearch from '@/core/simple-search-table/index.vue'
+import FastSearch from '@/core/simple-search-table/index'
 import { ref } from 'vue'
 interface User {
   id: string
@@ -13,7 +13,7 @@ interface User {
 }
 
 // mock data
-const testdata: User[] = [
+const testdata = [
   {
     id: '00001',
     name: '张三',
@@ -65,57 +65,73 @@ const column = [
     prop: 'address',
     label: '地址',
     width: 180,
-    formatter: (row: User) => {
+    formatter: (row: any) => {
       return row.city + '...'
     },
     fixed: 'right'
   }
 ]
 
-const test = ref('')
-const searchRef = ref(null)
-const change = (e: string) => {
-  console.log(123456)
-}
-
-
+const height = ref(500)
 </script>
 
 <template>
-  <main>
-    <fast-table table-key="test-table" :data="testdata" :config="{ border: true, height: 120 }" :column="column">
+  <!-- <fast-table table-key="test-table" :data="testdata" :config="{ border: true, height: 120 }" :column="column">
       <el-table-column prop="sex">
         <template #default="scope">
           <el-tag>{{ scope.row.sex === 1 ? '男' : '女' }}</el-tag>
         </template>
-      </el-table-column>
-      <el-table-column prop="like">
-        <template #default="scope">
+</el-table-column>
+<el-table-column prop="like">
+  <template #default="scope">
           <el-tag v-for="item in scope.row.like" style="margin-right: 8px;">{{ item }}</el-tag>
         </template>
-      </el-table-column>
+</el-table-column>
 
-    </fast-table>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
 
-    <FastSearch ref="searchRef">
-      <template #custom="scope">
+
+
+
+</fast-table> -->
+  <div :style="{ height: height + 'px' , display:'flex' }" style="width: 600px">
+  <div class="page-box">
+    <div>
+      <fast-search :data="testdata" :column="column">
+        <!-- <template #custom="scope">
         {{ scope }}
-        <el-switch v-model="scope.data.searchKey" @change="change" />
-      </template>
-      <fast-table table-key="test-table" :data="testdata" :column="column">
+        <el-switch v-model="scope.data.searchKey"  />
+      </template> -->
         <el-table-column prop="sex">
           <template #default="scope">
-            <!-- <el-tag>{{ scope.row.sex === 1 ? '男' : '女' }}</el-tag> -->
-            <el-input v-model="scope.row.name" placeholder="123456" />
+            <el-tag>{{ scope.row.sex === 1 ? '男' : '女' }}</el-tag>
           </template>
         </el-table-column>
-      </fast-table>
-    </FastSearch>
-  </main>
+        <el-table-column prop="like">
+          <template #default="scope">
+            <el-tag v-for=" item  in  scope.row.like " style="margin-right: 8px;">{{ item }}</el-tag>
+          </template>
+        </el-table-column>
+      </fast-search>
+      <input id="it" v-model="height" />
+    </div>
+  </div>
+  </div>
 </template>
+
+<style>
+#it {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 150px;
+}
+
+.page-box {
+  /* position: absolute; */
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+}
+</style>
