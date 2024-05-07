@@ -5,7 +5,6 @@ const option = [
   {
     name: 'username',
     label: '用户名',
-    type: 'input'
   }
 ]
 

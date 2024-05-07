@@ -8,5 +8,4 @@ import { useForm } from '../hooks/index'
 const emit = defineEmits(['input'])
 const props = defineProps(['value'])
 const { data } = useForm({ emit, props })
-console.log(12346)
 </script>

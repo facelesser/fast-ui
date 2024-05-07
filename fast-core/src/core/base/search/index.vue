@@ -4,8 +4,7 @@
             <el-row class="render-row">
                 <el-col v-for="i in displayOptions" :key="i.name" class="render-col" :span="24 / colSpan">
                     <el-form-item :prop="i.name" :label-width="i.labelWidth" :label="i.label" class="form_item_reset">
-                        {{ cname(i) }}
-                        <component :is="cname(i)" v-model="formData[i.name]" v-bind="i" />
+                        <component :is="cname(i)" v-model="formData[i.name]" v-bind="i"></component>
                     </el-form-item>
                 </el-col>
 
@@ -18,28 +17,18 @@
                 </el-col>
             </el-row>
         </el-form>
-
     </div>
 </template>
-<!-- <script>
-// 导入组件
-import Components from './index'
-export default {
-    components: Components
-}
-</script> -->
+
 <script setup lang="ts">
 import { defineProps, ref, watch, computed, defineEmits, defineComponent } from 'vue'
-import { ItemInput } from './index'
-// console.log(Components)
-// defineComponent(
-//     Components.ItemInput
-// )
 import { componentClassName } from '../../common/var'
 const C_Name = 'search'
 interface OptionItem {
     name: string
     label: string
+    type?: string,
+    defaultValue?: any
 }
 const props = defineProps({
     option: {
@@ -52,7 +41,7 @@ const props = defineProps({
 
 const emits = defineEmits(['change'])
 // 获取组件名称
-const cname = (c) => 'ItemInput'
+const cname = (c: OptionItem) => `item-${c.type ?? 'input'}`
 // 表单
 const formData = ref({})
 // 收起展开
@@ -94,4 +83,12 @@ watch(
     }
 )
 
+</script>
+
+<script lang="ts">
+// 导入组件
+import Components from './index'
+export default {
+    components: Components
+}
 </script>
