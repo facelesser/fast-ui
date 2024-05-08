@@ -7,8 +7,9 @@ export default defineComponent({
     props: Props,
     setup(props, ctx) {
         // 自定义节点
-        const columnNodes = getSlotDefault(ctx) || props.outColumn || []
+        const columnNodes = [...getSlotDefault(ctx), ...props.outColumn ?? []]
         // 合并 Column & Custom
+        console.log(columnNodes)
         const merageColumn = () => {
             if (!Array.isArray(props.column)) {
                 throw new Error('请传入正确的column参数!')
@@ -31,9 +32,10 @@ export default defineComponent({
         // 展示内容
         const tableNode = merageColumn()
 
-        
+
+
         // 显示设置图标
-        const showSetting = ref(false)
+        // const showSetting = ref(false)
         // 鼠标移入
         // const onMouseenter = (e: MouseEvent) => {
         //     showSetting.value = true
@@ -47,7 +49,7 @@ export default defineComponent({
         console.log('table-ctx==>', ctx)
 
         return () =>
-            <div class="fast-ui-table" 
+            <div class="fast-ui-table"
             // onMouseenter={(e) => onMouseenter(e)} 
             // onMouseleave={(e) => onMouseleave(e)} 
             >

@@ -2,6 +2,8 @@
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 <template>
+  <RouterLink to="/table-edit">表格编辑</RouterLink>
+  <br/>
   <RouterLink to="/search">搜索组件</RouterLink>
   <br/>
   <RouterLink to="/">简易搜索表格</RouterLink>
