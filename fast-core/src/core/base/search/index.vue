@@ -1,7 +1,7 @@
 <template>
     <div :class="componentClassName(C_Name)">
-        <el-form v-model="formData">
-            <el-row class="render-row">
+        <el-form v-model="formData" label-position="top">
+            <el-row class="render-row" :gutter="8">
                 <el-col v-for="i in displayOptions" :key="i.name" class="render-col" :span="24 / colSpan">
                     <el-form-item :prop="i.name" :label-width="i.labelWidth" :label="i.label" class="form_item_reset">
                         <component :is="cname(i)" v-model="formData[i.name]" v-bind="i"></component>
@@ -35,7 +35,7 @@ const props = defineProps({
         default: []
     },
     colSpan: {
-        default: 4
+        default: 6
     }
 })
 

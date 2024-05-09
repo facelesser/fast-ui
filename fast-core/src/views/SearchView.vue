@@ -5,6 +5,26 @@ const option = [
   {
     name: 'username',
     label: '用户名',
+  },
+  {
+    name: 'age',
+    label: '年龄',
+  },
+  {
+    name: 'age2',
+    label: '年龄',
+  },
+  {
+    name: 'age3',
+    label: '年龄',
+  },
+  {
+    name: 'age4',
+    label: '年龄',
+  },
+  {
+    name: 'age6',
+    label: '年龄',
   }
 ]
 
