@@ -1,6 +1,6 @@
 <template>
     <div>
-        <fast-table :data="data" :column="realcolumn" :outColumn="nodes">
+        <base-table :data="data" :column="realcolumn" :outColumn="nodes">
             <el-table-column v-bind="item" v-for="item in defaultColumn" :key="item.prop">
                 <template #default="scope">
                     <el-input v-model="scope.row[item.prop]" />
@@ -11,14 +11,14 @@
                     <el-button type="danger" @click="del(scope)">删除</el-button>
                 </template>
             </el-table-column>
-        </fast-table>
+        </base-table>
 
         <el-button @click="submit">提交</el-button>
     </div>
 </template>
 <script setup lang="ts">
 // import { column } from '../base/table/default';
-import FastTable from '../base/table/index'
+import BaseTable from '../base/table/index'
 import { defineProps, defineSlots } from 'vue'
 import { ElMessage } from 'element-plus'
 const props = defineProps({

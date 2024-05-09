@@ -1,11 +1,18 @@
-import { defineComponent, type VNode, ref } from 'vue'
+import { defineComponent, inject, ref, defineProps, withDefaults } from 'vue'
+import { type VNode } from 'vue'
 import Props from './default'
 import './index.scss'
-import TableSetting from './setting.vue'
+// import TableSetting from './setting.vue'
 import { getSlotDefault } from './utils'
+import { THEME_PREFIX, componentClassName, type Theme } from '../../common/var'
+export const C_Name = 'fast-table'
+
 export default defineComponent({
+    name: C_Name,
     props: Props,
     setup(props, ctx) {
+        const theme = inject(THEME_PREFIX) as Theme
+        const TableTheme = theme?.tableTheme
         // 自定义节点
         const columnNodes = [...getSlotDefault(ctx), ...props.outColumn ?? []]
         // 合并 Column & Custom
@@ -32,8 +39,6 @@ export default defineComponent({
         // 展示内容
         const tableNode = merageColumn()
 
-
-
         // 显示设置图标
         // const showSetting = ref(false)
         // 鼠标移入
@@ -46,10 +51,10 @@ export default defineComponent({
         //     showSetting.value = false
         // }
 
-        console.log('table-ctx==>', ctx)
 
         return () =>
-            <div class="fast-ui-table"
+            <div
+                class={componentClassName(C_Name)}
             // onMouseenter={(e) => onMouseenter(e)} 
             // onMouseleave={(e) => onMouseleave(e)} 
             >

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import FastTable from '@/core/base/table/index'
 import { ref } from 'vue'
 interface User {
   id: string
@@ -77,7 +76,7 @@ const height = ref(500)
 
 <template>
   <h1>纯表格</h1>
- <fast-table table-key="test-table" :data="testdata" :config="{ border: true, height: 120 }" :column="column">
+ <fast-table table-key="test-table" :data="testdata" :config="{ border: true, height: 240 }" :column="column">
     <el-table-column prop="sex">
       <template #default="scope">
         <el-tag>{{ scope.row.sex === 1 ? '男' : '女' }}</el-tag>

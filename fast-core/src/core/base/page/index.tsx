@@ -6,9 +6,7 @@ export const C_Name = 'fast-pagination'
 export default defineComponent({
     name: C_Name,
     props: {
-        total: {
-            default: 0, type: Number
-        }
+        total: { default: 0, type: Number }
     },
     setup(props, ctx) {
         return () => <div class={componentClassName(C_Name)}>

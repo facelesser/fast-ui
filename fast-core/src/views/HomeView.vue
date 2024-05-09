@@ -120,4 +120,4 @@ const height = ref(500)
   bottom: 0;
   display: flex;
 }
-</style>@/core/base/table/index
+</style>
