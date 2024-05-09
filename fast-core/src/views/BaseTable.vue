@@ -1,3 +1,20 @@
+
+
+<template>
+  <h1>纯表格</h1>
+  <fast-table :data="testdata" :columns="column">
+    <el-table-column prop="sex">
+      <template #default="scope">
+        <el-tag>{{ scope.row.sex === 1 ? '男' : '女' }}</el-tag>
+      </template>
+    </el-table-column>
+    <el-table-column prop="like">
+      <template #default="scope">
+        <el-tag v-for="item in scope.row.like" style="margin-right: 8px;">{{ item }}</el-tag>
+      </template>
+    </el-table-column>
+  </fast-table>
+</template>
 <script setup lang="ts">
 import { ref } from 'vue'
 interface User {
@@ -73,28 +90,6 @@ const height = ref(500)
 
 
 </script>
-
-<template>
-  <h1>纯表格</h1>
- <fast-table table-key="test-table" :data="testdata" :config="{ border: true, height: 240 }" :column="column">
-    <el-table-column prop="sex">
-      <template #default="scope">
-        <el-tag>{{ scope.row.sex === 1 ? '男' : '女' }}</el-tag>
-      </template>
-    </el-table-column>
-    <el-table-column prop="like">
-      <template #default="scope">
-        <el-tag v-for="item in scope.row.like" style="margin-right: 8px;">{{ item }}</el-tag>
-      </template>
-    </el-table-column>
-  </fast-table> 
-
-
-
-
-
-</template>
-
 <style>
 #it {
   position: fixed;

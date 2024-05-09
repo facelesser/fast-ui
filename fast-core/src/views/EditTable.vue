@@ -4,7 +4,7 @@
         <el-button @click="submit">提交</el-button>
 
     </div>
-    <FastTableEdit ref="editTable" :data="data" :column="column">
+    <FastTableEdit ref="editTable" :data="data" :columns="column">
         <el-table-column prop="name">
             <template #default="scope">
                 <el-input v-model="scope.row.name" placeholder="12345" />

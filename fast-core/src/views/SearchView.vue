@@ -14,7 +14,6 @@ const option = [
 
 <template>
   <h1>搜索组件</h1>
-
   <fast-search :option="option" />
 </template>
 

@@ -1,44 +1,44 @@
 
 import type { PropType } from 'vue'
 import type { TableColumnCtx, TableProps } from 'element-plus'
-import type { PickProp } from '../../common/type'
 
-type Column = PropType<Partial<TableColumnCtx<Object>>[]>
-type Data = PropType<Object[]>
-type Config = PropType<Partial<TableProps<Object>>[]>
 
+type T = any
+type TableColumn = Partial<TableColumnCtx<T>>
+type TableConfig = Partial<TableProps<T>>
 export interface BaseTableProps {
-    // 列表项配置
-    column: Column,
-    // 指定传入列表项配置
-    outColumn?: Column,
-    // 列表数据
-    data: Data,
-    // 列表默认配置
-    config: Config,
-    // 列表唯一ID
-    tableKey: String,
+    tableId: String; // 列表唯一ID
+    data: T[]; // 列表数据
+    columns: TableColumn[]; // 列表项配置
+    outColumn?: TableColumn[]; // 指定传入列表项配置
+    config: TableConfig; // 列表默认配置
+}
+
+// 默认样式
+export const defaultConfig = {
+    broder: true,
+    height: 200
 }
 
 
 export default {
-    column: {
-        type: Object as PickProp<BaseTableProps, 'column'>,
+    columns: {
+        type: Object as PropType<BaseTableProps['columns']>,
         default: () => []
     },
     outColumn: {
-        type: Object as PickProp<BaseTableProps, 'column'>,
+        type: Object as PropType<BaseTableProps['columns']>,
         default: () => []
     },
     data: {
-        type: Object as PickProp<BaseTableProps, 'data'>,
+        type: Object as PropType<BaseTableProps['data']>,
         default: () => []
     },
     config: {
-        type: Object as PickProp<BaseTableProps, 'config'>,
-        default: () => { }
+        type: Object as PropType<BaseTableProps['config']>,
+        default: {}
     },
-    tableKey: {
+    tableId: {
         type: String,
         default: ''
     }

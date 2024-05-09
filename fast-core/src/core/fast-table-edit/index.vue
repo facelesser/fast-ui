@@ -1,6 +1,6 @@
 <template>
     <div>
-        <base-table :data="data" :column="realcolumn" :outColumn="nodes">
+        <base-table :data="data" :columns="realcolumn" :outColumn="nodes">
             <el-table-column v-bind="item" v-for="item in defaultColumn" :key="item.prop">
                 <template #default="scope">
                     <el-input v-model="scope.row[item.prop]" />
@@ -22,7 +22,7 @@ import BaseTable from '../base/table/index'
 import { defineProps, defineSlots } from 'vue'
 import { ElMessage } from 'element-plus'
 const props = defineProps({
-    column: {
+    columns: {
         default: [],
         type: Array
     },
@@ -33,7 +33,7 @@ const props = defineProps({
 })
 
 // 补充节点
-const realcolumn = [...props.column, {
+const realcolumn = [...props.columns, {
     prop: 'table-tool--edit',
     label: '操作',
     custom: true,
@@ -48,21 +48,21 @@ const del = (e) => {
 const slots = defineSlots()
 const allNodes = slots?.default?.() || []
 let nodes = allNodes.filter(i => {
-    const res = props.column.filter(f => f?.prop === i?.props?.prop).find(q => q.formItem.type !== 'input')
+    const res = props.columns.filter(f => f?.prop === i?.props?.prop).find(q => q.formItem.type !== 'input')
     console.log(res)
     return res ? true : false
 })
 
 
 // console.log('使用自定义节点', nodes)
-const defaultColumn = props.column.filter(i => i?.formItem?.type === 'input')
+const defaultColumn = props.columns.filter(i => i?.formItem?.type === 'input')
 
 
 
 // 提交
 const submit = () => {
     console.log(props.data)
-    for (const item of props.column) {
+    for (const item of props.columns) {
         if (item.formItem) {
             let res = item.formItem?.test?.(props.data[0], props.data[0][item.prop])
             console.log(res)

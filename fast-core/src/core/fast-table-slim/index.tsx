@@ -19,7 +19,7 @@ export const C_Name = 'fast-search'
 export default defineComponent({
     name: C_Name,
     props: {
-        column: tableProps.column,
+        columns: tableProps.columns,
         // 搜索字样
         placeholder: { default: '搜索', type: String },
         // 高度gap
@@ -52,6 +52,8 @@ export default defineComponent({
         useResizeObserver(ctRef, (entries) => {
             const calcHeight = ctRef.value.clientHeight - (props.noSearch ? 0 : tbRef.value.clientHeight) - tpRef.value.$el.clientHeight - props.gap
             tHeight.value = calcHeight > props.miniHeight ? calcHeight : props.miniHeight
+
+            console.log(tHeight.value)
         })
 
         // 简易搜索组件配置
@@ -90,7 +92,7 @@ export default defineComponent({
                     </div>
                 }
 
-                <base-table config={{ border: true, height: aHeight.value + 'px' }} outColumn={node} column={props.column} data={[]} ></base-table>
+                <base-table config={{ height: aHeight.value }} outColumn={node} columns={props.columns} data={[]} ></base-table>
                 <base-page ref={tpRef} total={500} />
             </div>
     }

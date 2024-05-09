@@ -84,7 +84,7 @@ const height = ref(500)
   <div :style="{ height: height + 'px', display: 'flex' }" >
     <div class="page-box">
       <div>
-        <fast-table-slim :data="testdata" :column="column">
+        <fast-table-slim :data="testdata" :columns="column">
           <el-table-column prop="sex">
             <template #default="scope">
               <el-tag>{{ scope.row.sex === 1 ? '男' : '女' }}</el-tag>

@@ -34,7 +34,7 @@ const props = defineProps({
         type: Array,
         default: () => []
     },
-    tableKey: {
+    tableId: {
         type: String,
         default: ''
     }
@@ -47,13 +47,13 @@ const dialogVisible = ref(false)
 
 // 获取本地配置项
 const getTableSetting = () => {
-    if (props.tableKey) {
+    if (props.tableId) {
         try {
             const settingStr = localStorage.getItem('TABLE_SETTING_TREE')
             console.log(settingStr)
             if (settingStr) {
                 localSetting.value = JSON.parse(settingStr)
-                data.value = localSetting.value[props.tableKey]
+                data.value = localSetting.value[props.tableId]
 
             } else {
                 localSetting.value = {}
@@ -84,7 +84,7 @@ const handleOk = () => {
     localStorage.setItem(TABLE_SETTING_TREE, JSON.stringify(
         {
             ...localSetting.value,
-            [props.tableKey]: data.value
+            [props.tableId]: data.value
         }
     ))
     dialogVisible.value = false

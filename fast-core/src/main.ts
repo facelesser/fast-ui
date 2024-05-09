@@ -21,7 +21,6 @@ app.use(ElementPlus)
 app.use(FastUI, {
     tableTheme: {
         border: true,
-        height: 400
     }
 })
 
