@@ -25,6 +25,10 @@ const option = [
   {
     name: 'age6',
     label: '年龄',
+  },
+  {
+    name: 'age7',
+    label: '年龄',
   }
 ]
 

@@ -1,16 +1,16 @@
 <template>
     <div :class="componentClassName(C_Name)">
         <el-form v-model="formData" label-position="top">
-            <el-row class="render-row" :gutter="8">
-                <el-col v-for="i in displayOptions" :key="i.name" class="render-col" :span="24 / colSpan">
+            <el-row class="render-row" :gutter="10">
+                <el-col v-for="i in displayOptions" :key="i.name" class="render-col" :span="24 / colSpan"
+                >
                     <el-form-item :prop="i.name" :label-width="i.labelWidth" :label="i.label" class="form_item_reset">
                         <component :is="cname(i)" v-model="formData[i.name]" v-bind="i"></component>
                     </el-form-item>
                 </el-col>
 
-                <el-col :span="24 / colSpan" class="render-col">
-                    <el-button type="primary" @click="doSearch">查询</el-button>
-                    <el-button @click="doReset">重置</el-button>
+                <el-col :span="24 / colSpan" class="render-col" style="display: flex;align-items: end;">
+                    <SearchButton @change="handleSearchBtn" />
                     <el-button v-if="option.length > colSpan - 1" type="text" @click="open = !open">
                         {{ open ? '展开' : '收起' }}
                     </el-button>
@@ -23,6 +23,7 @@
 <script setup lang="ts">
 import { defineProps, ref, watch, computed, defineEmits, defineComponent } from 'vue'
 import { componentClassName } from '../../common/var'
+import SearchButton from './searchButton.vue'
 const C_Name = 'search'
 interface OptionItem {
     name: string
@@ -36,7 +37,7 @@ const props = defineProps({
     },
     colSpan: {
         default: 6
-    }
+    },
 })
 
 const emits = defineEmits(['change'])
@@ -65,15 +66,23 @@ const init = () => {
 }
 init()
 
+
+const handleSearchBtn = (type: 'search' | 'reset') => {
+    if (type === 'search') {
+        doSearch()
+    } else {
+        doReset()
+    }
+}
 // 搜索
 const doSearch = () => {
-    console.log(formData.value)
     emits('change', formData.value)
 }
 
 // 重置
 const doReset = () => {
     init()
+    emits('change', formData.value)
 }
 
 watch(
@@ -92,3 +101,22 @@ export default {
     components: Components
 }
 </script>
+
+<style scoped>
+/deep/.el-form--default.el-form--label-top .el-form-item .el-form-item__label {
+    margin-bottom: 0;
+}
+
+/deep/.el-form--label-top .el-form-item .el-form-item__label {
+    margin-bottom: 0;
+}
+
+.el-form-item {
+    margin-bottom: 0;
+}
+
+.render-col {
+    /* display: flex;
+    align-items: end; */
+}
+</style>
