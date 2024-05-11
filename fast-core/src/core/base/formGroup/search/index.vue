@@ -1,6 +1,6 @@
 <template>
-    <!-- <el-input v-bind="input($attrs)" v-model="data" style="width:100%"></el-input> -->
-    <el-date-picker v-model="data" style="width:100%"></el-date-picker>
+    <el-input v-bind="input($attrs)" v-model="data"></el-input>
+    <!-- <el-date-picker v-model="data" ></el-date-picker> -->
 </template>
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue'

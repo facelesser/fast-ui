@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import FastSearch from '@/core/base/search/index.vue'
 const option = [
   {
@@ -9,18 +8,23 @@ const option = [
   {
     name: 'age',
     label: '年龄',
+    is: 'select'
   },
   {
     name: 'age2',
     label: '年龄',
+    is: 'date-picker',
+    type: 'daterange'
   },
   {
     name: 'age3',
     label: '年龄',
+    is: 'input-number',
   },
   {
     name: 'age4',
     label: '年龄',
+    is: 'rate'
   },
   {
     name: 'age6',
@@ -41,6 +45,4 @@ const option = [
   <fast-search :option="option" />
 </template>
 
-<style>
-
-</style>
+<style></style>
