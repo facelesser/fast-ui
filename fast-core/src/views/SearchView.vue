@@ -33,6 +33,19 @@ const option = [
   {
     name: 'age7',
     label: '年龄',
+  },
+  {
+    name: 'age8',
+    label: '年龄',
+    is: 'rate'
+  },
+  {
+    name: 'age9',
+    label: '年龄',
+  },
+  {
+    name: 'age10',
+    label: '年龄',
   }
 ]
 

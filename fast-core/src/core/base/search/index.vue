@@ -2,14 +2,17 @@
     <div :class="componentClassName(C_Name)">
         <el-form v-model="formData" label-position="top">
             <el-row class="render-row" :gutter="10">
-                <el-col v-for="i in displayOptions" :key="i.name" class="render-col" :span="24 / colSpan">
-                    <el-form-item :prop="i.name" :label-width="i.labelWidth" :label="i.label" class="form_item_reset">
-                        <component :is="analysisComponentName(i)" v-model="formData[i.name]" v-bind="i" style="width:100%">
-                        
-                        </component>
-                    </el-form-item>
-                </el-col>
+                <TransitionGroup name="list">
+                    <el-col v-for="i in displayOptions" :key="i.name" class="render-col" :span="24 / colSpan">
+                        <el-form-item :prop="i.name" :label-width="i.labelWidth" :label="i.label"
+                            class="form_item_reset">
+                            <component :is="analysisComponentName(i)" v-model="formData[i.name]" v-bind="i"
+                                style="width:100%">
 
+                            </component>
+                        </el-form-item>
+                    </el-col>
+                </TransitionGroup>
                 <el-col :span="24 / colSpan" class="render-col" style="display: flex;align-items: end;">
                     <SearchButton v-model="open" @change="handleSearchAction" />
                 </el-col>
@@ -76,14 +79,14 @@ const handleSearchAction = (type: 'search' | 'reset') => {
 // 搜索
 const doSearch = () => {
     emits('change', formData.value)
-    console.log('搜索结果====>', {...formData.value})
+    console.log('搜索结果====>', { ...formData.value })
 }
 
 // 重置
 const doReset = () => {
     init()
     emits('change', formData.value)
-    console.log('重置结果====>', {...formData.value})
+    console.log('重置结果====>', { ...formData.value })
 
 }
 
@@ -108,6 +111,7 @@ export default {
 .fast-ui-search {
     border: 1px solid red;
 }
+
 /deep/.el-form--default.el-form--label-top .el-form-item .el-form-item__label {
     margin-bottom: 0;
 }
@@ -123,5 +127,17 @@ export default {
 .render-col {
     /* display: flex;
     align-items: end; */
+}
+
+
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.15s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+    transform: translateY(-25px);
 }
 </style>
